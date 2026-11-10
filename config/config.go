@@ -177,19 +177,19 @@ func (c *config) setupEnvVars(log *zap.Logger, cmd *cobra.Command) {
 		log.Error("Error while getting IP", zap.Error(err))
 		ipBlocked = true
 	}
-			if c.Host == "" {
+	if c.Host == "" {
 		c.Host = "https://tg-filestreambot-production-2333.up.railway.app"
-	}
-			
 		if c.UsePublicIP {
 			if ipBlocked {
-				log.Sugar().Warn("Can't get public IP, using local IP")
+				log.Sugar().Warn("Can't get public IP, fallback to internal IP")
 			} else {
-				log.Sugar().Warn("You are using a public IP, please be aware of the security risks while exposing your IP to the internet.")
-				log.Sugar().Warn("Use 'HOST' variable to set a domain name")
+				log.Sugar().Warn("You are using a public IP, please be careful")
+				log.Sugar().Warn("Use 'HOST' to customize the host")
 			}
 		}
-		log.Sugar().Info("HOST not set, automatically set to " + c.Host)
+		log.Sugar().Info("HOST not set, automatically set to: " + c.Host)
+	}
+
 	}
 	val := reflect.ValueOf(c).Elem()
 	for _, env := range os.Environ() {
