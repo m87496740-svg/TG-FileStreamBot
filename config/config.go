@@ -190,7 +190,7 @@ func (c *config) setupEnvVars(log *zap.Logger, cmd *cobra.Command) {
 		log.Sugar().Info("HOST not set, automatically set to: " + c.Host)
 	}
 
-	}
+	
 	val := reflect.ValueOf(c).Elem()
 	for _, env := range os.Environ() {
 		if strings.HasPrefix(env, "MULTI_TOKEN") {
