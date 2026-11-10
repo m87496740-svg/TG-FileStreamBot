@@ -172,7 +172,7 @@ func (c *config) setupEnvVars(log *zap.Logger, cmd *cobra.Command) {
 		log.Fatal("Error while parsing env variables", zap.Error(err))
 	}
 	var ipBlocked bool
-	ip, err := getIP(c.UsePublicIP)
+	_, err := getIP(c.UsePublicIP)
 	if err != nil {
 		log.Error("Error while getting IP", zap.Error(err))
 		ipBlocked = true
