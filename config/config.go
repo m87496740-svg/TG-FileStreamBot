@@ -177,8 +177,10 @@ func (c *config) setupEnvVars(log *zap.Logger, cmd *cobra.Command) {
 		log.Error("Error while getting IP", zap.Error(err))
 		ipBlocked = true
 	}
-	if c.Host == "" {
-		c.Host = "http://" + ip + ":" + strconv.Itoa(c.Port)
+		if c.Host == "" {
+		c.Host = "https://tg-filestreambot-production-2333.up.railway.app"
+
+		
 		if c.UsePublicIP {
 			if ipBlocked {
 				log.Sugar().Warn("Can't get public IP, using local IP")
